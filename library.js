@@ -28,37 +28,38 @@ class Book {
 // Library class managing books
 class Library {
   constructor() {
-    this.books = [];
+    this.books = []; // Array to hold all book objects
   }
 
   addBook(book) {
-    this.books.push(book);
+    this.books.push(book); // Add a new book to the library
+    console.log(`${book.title} by ${book.author} has been added to the library!`);
   }
 
   removeBook(title) {
-    const index = this.books.findIndex(book => book.title === title);
+    const index = this.books.findIndex(book => book.title === title); // Find the book by title
     if (index !== -1) {
-      this.books.splice(index, 1);
-      console.log(`${title} has been removed from the library.`);
+      const removedBook = this.books.splice(index, 1)[0]; // Remove the book from the array
+      console.log(`Removed: ${removedBook.getDetails()}`);
     } else {
-      console.log(`Book not found.`);
+      console.log(`Can't find a book with the title: ${title} to remove`);
     }
   }
 
   searchBook(title) {
-    const book = this.books.find(book => book.title === title);
+    const book = this.books.find(book => book.title === title); // Search for a book by title
     if (book) {
-      console.log(`Found: ${book.getDetails()}`);
+      console.log(`Found: ${book.getDetails()}`); // If found, show details
     } else {
-      console.log(`Book not found.`);
+      console.log(`No book found with the title: ${title}`);
     }
   }
 
   listBooks() {
     if (this.books.length === 0) {
-      console.log('No books in the library.');
+      console.log('No books in the library.'); // Inform if no books are present
     } else {
-      this.books.forEach(book => console.log(book.getDetails()));
+      this.books.forEach(book => console.log(book.getDetails())); // List all books
     }
   }
 }
